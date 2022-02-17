@@ -1,0 +1,27 @@
+---
+- name: Upload dockerfile to build host
+  synchronize: src=dockerfiles/build dest=/tmp
+- name: Build container image
+  docker_image:
+   name: image_boxfuse
+   build:
+   path: files
+   state: present
+- name: Log into DockerHub
+  community.docker.docker_login:
+   username: login
+   password: password
+- name: Tag and push to docker hub
+  community.docker.docker_image:
+   name: image_boxfuse:latest
+   repository: kmi8652/image_boxfuse:latest
+   push: yes
+   source: local
+- name: Remove image
+  docker_image:
+   state: absent
+   name: kmi8652/image_boxfuse:latest
+- name: Remove image
+  docker_image:
+   state: absent
+   name: image_boxfuse:latest

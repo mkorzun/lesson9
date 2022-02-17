@@ -1,0 +1,15 @@
+---
+- name: Log into DockerHub
+  community.docker.docker_login:
+   username: login
+   password: password
+- name: ensure a container is running
+  docker_container:
+   name: my_tomcat
+   state: started
+   image: kmi8652/image_boxfuse:latest
+   pull: true
+   auto_remove: no
+   restart: yes
+   ports:
+    - "8080:8080"
