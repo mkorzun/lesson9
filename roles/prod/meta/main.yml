@@ -1,4 +1,0 @@
----
-dependencies:
-  - { role: all }
-  - { role: build }

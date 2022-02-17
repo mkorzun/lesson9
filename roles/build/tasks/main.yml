@@ -1,11 +1,11 @@
 ---
 - name: Upload dockerfile to build host
-  synchronize: src=dockerfiles/build dest=/tmp
+  ssynchronize: src=files dest=/tmp/dockerfiles
 - name: Build container image
   docker_image:
    name: image_boxfuse
    build:
-   path: files
+   path: /tmp/dockerfiles/files
    state: present
 - name: Log into DockerHub
   community.docker.docker_login:
