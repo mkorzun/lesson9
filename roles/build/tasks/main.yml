@@ -1,6 +1,6 @@
 ---
 - name: Upload dockerfile to build host
-  ssynchronize: src=files dest=/tmp/dockerfiles
+  synchronize: src=files dest=/tmp/dockerfiles
 - name: Build container image
   docker_image:
    name: image_boxfuse
